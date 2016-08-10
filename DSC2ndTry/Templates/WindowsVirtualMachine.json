@@ -461,7 +461,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-DataDiskName'),'-1.vhd')]"
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-DataDiskName'),'.vhd')]"
               },
               "name": "[variables('SQL-DataDiskName')]",
               "caching": "None",
@@ -471,7 +471,7 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-LogDiskName'),'-1.vhd')]"
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-LogDiskName'),'.vhd')]"
               },
               "name": "[variables('SQL-LogDiskName')]",
               "caching": "None",
@@ -566,7 +566,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-DataDiskName'),'-1.vhd')]"
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-DataDiskName'),'.vhd')]"
               },
               "name": "[variables('SP-DataDiskName')]",
               "caching": "None",
@@ -576,7 +576,7 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-LogDiskName'),'-1.vhd')]"
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-LogDiskName'),'.vhd')]"
               },
               "name": "[variables('SP-LogDiskName')]",
               "caching": "None",
@@ -586,7 +586,7 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-SearchDiskName'),'-1.vhd')]"
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-SearchDiskName'),'.vhd')]"
               },
               "name": "[variables('SP-SearchDiskName')]",
               "caching": "None",
