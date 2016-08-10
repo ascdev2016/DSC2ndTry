@@ -345,20 +345,21 @@
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
-          }
+          },
+          "dataDisks": [
+            {
+              "vhd": {
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('DC-DataDiskName'),'-1.vhd')]"
+              },
+              "name": "[concat(variables('DC-Name'),'-data-disk1')]",
+              "caching": "None",
+              "createOption": "empty",
+              "diskSizeGB": "[variables('DC-DataDiskSize')]",
+              "lun": 0
+            }
+          ]
         },
-        "dataDisks": [
-          {
-            "vhd": {
-              "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('DC-DataDiskName'),'-1.vhd')]"
-            },
-            "name": "[concat(variables('DC-Name'),'-data-disk1')]",
-            "caching": "None",
-            "createOption": "empty",
-            "diskSizeGB": "[variables('DC-DataDiskSize')]",
-            "lun": 0
-          }
-        ],
+
         "networkProfile": {
           "networkInterfaces": [
             {
