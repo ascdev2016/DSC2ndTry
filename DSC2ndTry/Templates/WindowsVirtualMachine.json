@@ -84,19 +84,19 @@
     "imageOffer": "WindowsServer",
     "DC-OSDiskName": "DC-System",
     "DC-NicName": "[concat(parameters('customerName'), '-DC-NIC')]",
-    "DC-PIP-Name": "[concat(parameters('customerName'), 'DCPIP')]",
+    "DC-PIP-Name": "[concat(parameters('customerName'), 'dcpip')]",
     "DC-Name": "[concat(parameters('customerName'), '-DC')]",
     "DC-InternalIP": "10.0.0.10",
     "DC-VMSize": "Standard_D2",
     "SQL-OSDiskName": "SQL-System",
     "SQL-NicName": "[concat(parameters('customerName'), '-SQL-NIC')]",
-    "SQL-PIP-Name": "[concat(parameters('customerName'), 'SQLPIP')]",
+    "SQL-PIP-Name": "[concat(parameters('customerName'), 'sqlpip')]",
     "SQL-Name": "[concat(parameters('customerName'), '-SQL')]",
     "SQL-InternalIP": "10.0.0.20",
     "SQL-VMSize": "Standard_D2",
     "SP-OSDiskName": "SP-System",
     "SP-NicName": "[concat(parameters('customerName'), '-SP-NIC')]",
-    "SP-PIP-Name": "[concat(parameters('customerName'), 'SPPIP')]",
+    "SP-PIP-Name": "[concat(parameters('customerName'), 'sppip')]",
     "SP-Name": "[concat(parameters('customerName'), '-SP')]",
     "SP-InternalIP": "10.0.0.30",
     "SP-VMSize": "Standard_D2",
@@ -213,7 +213,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkInterfaces",
-      "name": "[variables('DC-NicName')]",
+      "name": "[variables('SQL-NicName')]",
       "location": "[resourceGroup().location]",
       "tags": {
         "displayName": "SQL-NetworkInterface"
@@ -400,7 +400,7 @@
         {
           "apiVersion": "[variables('apiVersion')]",
           "type": "Microsoft.Compute/virtualMachines/extensions",
-          "name": "[concat(variables('SP-Name'),'/joindomain')]",
+          "name": "[concat(variables('SQL-Name'),'/joindomain')]",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[concat('Microsoft.Compute/virtualMachines/', variables('SQL-Name'))]",
