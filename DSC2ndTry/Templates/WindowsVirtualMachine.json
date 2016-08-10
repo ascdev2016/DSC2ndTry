@@ -4,7 +4,7 @@
   "parameters": {
     "StorageAccountName": {
       "type": "string",
-      "defaultValue": "ascdevlab"
+      "defaultValue": "ascdevlabsol1"
     },
     "storageAccountType": {
       "type": "string",
@@ -82,30 +82,30 @@
   "variables": {
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "DC-OSDiskName": "DC-System",
-    "DC-DataDiskName": "DC-Data",
+    "DC-OSDiskName": "DCSystem",
+    "DC-DataDiskName": "DCData",
     "DC-DataDiskSize": "20",
     "DC-NicName": "[concat(parameters('customerName'), '-DC-NIC')]",
     "DC-PIP-Name": "[concat(parameters('customerName'), 'dcpip')]",
     "DC-Name": "[concat(parameters('customerName'), '-DC')]",
     "DC-InternalIP": "10.0.0.10",
     "DC-VMSize": "Standard_D2",
-    "SQL-OSDiskName": "SQL-System",
-    "SQL-DataDiskName": "SQL-Data",
+    "SQL-OSDiskName": "SQLSystem",
+    "SQL-DataDiskName": "SQLData",
     "SQL-DataDiskSize": "80",
-    "SQL-LogDiskName": "SQL-Log",
+    "SQL-LogDiskName": "SQLLog",
     "SQL-LogDiskSize": "40",
     "SQL-NicName": "[concat(parameters('customerName'), '-SQL-NIC')]",
     "SQL-PIP-Name": "[concat(parameters('customerName'), 'sqlpip')]",
     "SQL-Name": "[concat(parameters('customerName'), '-SQL')]",
     "SQL-InternalIP": "10.0.0.20",
     "SQL-VMSize": "Standard_D2",
-    "SP-OSDiskName": "SP-System",
-    "SP-DataDiskName": "SP-Data",
+    "SP-OSDiskName": "SPSystem",
+    "SP-DataDiskName": "SPData",
     "SP-DataDiskSize": "80",
-    "SP-LogDiskName": "SP-Log",
+    "SP-LogDiskName": "SPLog",
     "SP-LogDiskSize": "20",
-    "SP-SearchDiskName": "SP-Search",
+    "SP-SearchDiskName": "SPSearch",
     "SP-SearchDiskSize": "20",
     "SP-NicName": "[concat(parameters('customerName'), '-SP-NIC')]",
     "SP-PIP-Name": "[concat(parameters('customerName'), 'sppip')]",
@@ -342,7 +342,7 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "System",
+            "name": "[variables('DC-OSDiskName')]",
             "vhd": {
               "uri": "[concat('http://', variables('vhdStorageName'), '.blob.core.windows.net/', variables('vhdStorageContainerName'), '/', variables('DC-OSDiskName'), '.vhd')]"
             },
@@ -354,7 +354,7 @@
               "vhd": {
                 "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('DC-DataDiskName'),'-1.vhd')]"
               },
-              "name": "[concat(variables('DC-Name'),'-data-disk1')]",
+              "name": "[concat(variables('DC-DataDiskName'),'1')]",
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": "[variables('DC-DataDiskSize')]",
@@ -451,7 +451,7 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "System",
+            "name": "[variables('SQL-OSDiskName')]",
             "vhd": {
               "uri": "[concat('http://', variables('vhdStorageName'), '.blob.core.windows.net/', variables('vhdStorageContainerName'), '/', variables('SQL-OSDiskName'), '.vhd')]"
             },
@@ -461,9 +461,9 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-DataDiskName'),'.vhd')]"
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-DataDiskName'),'-1.vhd')]"
               },
-              "name": "(variables('SQL-DataDiskName')",
+              "name": "[variables('SQL-DataDiskName')]",
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": "[variables('SQL-DataDiskSize')]",
@@ -471,9 +471,9 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-LogDiskName'),'.vhd')]"
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SQL-LogDiskName'),'-1.vhd')]"
               },
-              "name": "(variables('SQL-LogDiskName')",
+              "name": "[variables('SQL-LogDiskName')]",
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": "[variables('SQL-LogDiskSize')]",
@@ -556,46 +556,46 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "System",
+            "name": "[variables('SP-OSDiskName')]",
             "vhd": {
               "uri": "[concat('http://', variables('vhdStorageName'), '.blob.core.windows.net/', variables('vhdStorageContainerName'), '/', variables('SP-OSDiskName'), '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
-          }
-        },
-        "dataDisks": [
-          {
-            "vhd": {
-              "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-DataDiskName'),'.vhd')]"
-            },
-            "name": "(variables('SP-DataDiskName')",
-            "caching": "None",
-            "createOption": "empty",
-            "diskSizeGB": "[variables('SP-DataDiskSize')]",
-            "lun": 0
           },
-          {
-            "vhd": {
-              "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-LogDiskName'),'.vhd')]"
+          "dataDisks": [
+            {
+              "vhd": {
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-DataDiskName'),'-1.vhd')]"
+              },
+              "name": "[variables('SP-DataDiskName')]",
+              "caching": "None",
+              "createOption": "empty",
+              "diskSizeGB": "[variables('SP-DataDiskSize')]",
+              "lun": 0
             },
-            "name": "(variables('SP-LogDiskName')",
-            "caching": "None",
-            "createOption": "empty",
-            "diskSizeGB": "[variables('SP-LogDiskSize')]",
-            "lun": 1
-          },
-          {
-            "vhd": {
-              "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-SearchDiskName'),'.vhd')]"
+            {
+              "vhd": {
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-LogDiskName'),'-1.vhd')]"
+              },
+              "name": "[variables('SP-LogDiskName')]",
+              "caching": "None",
+              "createOption": "empty",
+              "diskSizeGB": "[variables('SP-LogDiskSize')]",
+              "lun": 1
             },
-            "name": "(variables('SP-SearchDiskName')",
-            "caching": "None",
-            "createOption": "empty",
-            "diskSizeGB": "[variables('SP-SearchDiskSize')]",
-            "lun": 1
-          }
-        ],
+            {
+              "vhd": {
+                "uri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net/vhds/', variables('SP-SearchDiskName'),'-1.vhd')]"
+              },
+              "name": "[variables('SP-SearchDiskName')]",
+              "caching": "None",
+              "createOption": "empty",
+              "diskSizeGB": "[variables('SP-SearchDiskSize')]",
+              "lun": 2
+            }
+          ]
+        },      
         "networkProfile": {
           "networkInterfaces": [
             {
