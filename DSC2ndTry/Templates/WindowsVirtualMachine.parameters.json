@@ -1,0 +1,21 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "adm.dgadmin"
+    },
+    "adminPassword": {
+      "value": "Herzblut$$16@dg"
+    },
+    "domainName": {
+      "value": "ascdev.local"
+    },
+    "windowsOSVersion": {
+      "value": "2012-R2-Datacenter"
+    },
+    "customerName": {
+      "value": "solutions"
+    }
+  }
+}
