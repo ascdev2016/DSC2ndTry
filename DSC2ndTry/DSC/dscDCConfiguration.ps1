@@ -9,7 +9,7 @@ Param (
     [System.Management.Automation.PSCredential]$domainAdminCredentials
 )
  
-Import-DscResource -ModuleName PSDesiredStateConfiguration, xActiveDirectory
+Import-DscResource -ModuleName PSDesiredStateConfiguration, xActiveDirectory, xDisk
  
 Node $AllNodes.Where{$_.Role -eq "DC"}.Nodename
     {
@@ -20,7 +20,18 @@ Node $AllNodes.Where{$_.Role -eq "DC"}.Nodename
             ActionAfterReboot = 'ContinueConfiguration'
             AllowModuleOverwrite = $true
         }
- 
+		xWaitforDisk Disk2
+		{
+		DiskNumber = 2
+		RetryIntervalSec = 60
+		RetryCount = 60
+		}
+		xDisk FVolume
+		{
+		DiskNumber = 2
+		DriveLetter = 'F'
+		FSLabel = 'Data'
+		}
         WindowsFeature DNS_RSAT
         { 
             Ensure = "Present"

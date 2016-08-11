@@ -1,9 +1,0 @@
-@{ 
-    AllNodes = @( 
-        @{ 
-            NodeName = '*'
-            PSDscAllowDomainUser = $true
-        }
-    )
-}
- 

@@ -2,51 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "adminUsername": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "Username for the Virtual Machine."
-      }
-    },
-    "adminPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Password for the Virtual Machine."
-      }
-    }
-
-  },
-  "variables": { },
-  "resources": [
-    {
-      "name": "PrepareDisks",
-      "type": "extensions",
-      "location": "[parameters('location')]",
-      "apiVersion": "2015-06-15",
-      "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('SP-SQL-VMName'))]",
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('SP-DC-VMName'),'/extensions/CreateADForest')]"
-      ],
-      "tags": {
-        "displayName": "PrepareDisks"
       },
-      "properties": {
-        "publisher": "Microsoft.Powershell",
-        "type": "DSC",
-        "typeHandlerVersion": "2.1",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-          "modulesUrl": "[concat(parameters('assetlocation'), '/', 'PrepareDisk.ps1.zip')]",
-          "configurationFunction": "[variables('prepareDiskFunction')]",
-          "properties": {
-            "nodeName": "[parameters('SP-SQL-VMName')]"
-          }
-        },
-        "protectedSettings": { }
-      }
-    }
-  ],
+  "variables": { },
+  "resources": [ ],
   "outputs": {
     "result": {
       "value": "Hello World",

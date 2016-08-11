@@ -37,8 +37,6 @@
     <Content Include="Templates\WindowsVirtualMachine.parameters.json" />
     <Content Include="DSC\dscDCConfiguration.ps1" />
     <None Include="DSC\dscDCConfigurationData.psd1" />
-    <None Include="DSC\PrepareDisk.psd1" />
-    <None Include="DSC\preparedisks.ps1" />
     <None Include="nested\helloWorld.json" />
   </ItemGroup>
   <ItemGroup>
