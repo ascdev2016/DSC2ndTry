@@ -595,7 +595,7 @@
               "lun": 2
             }
           ]
-        },      
+        },
         "networkProfile": {
           "networkInterfaces": [
             {
@@ -638,8 +638,29 @@
           }
         }
       ]
+    },
+    {
+      "name": "nestedDeployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [ ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('_artifactsLocation'), '/', 'nested', '/', 'helloWorld.json', parameters('_artifactsLocationSasToken'))]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": { }
+      }
     }
-  ]
+  ],
+  "outputs": {
+    "result": {
+      "type": "object",
+      "value": "[reference('nestedDeployment').outputs.result]"
+    }
+  }
 }
+
 
  
