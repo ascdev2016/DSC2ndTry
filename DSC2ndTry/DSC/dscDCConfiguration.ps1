@@ -89,4 +89,36 @@ Node $AllNodes.Where{$_.Role -eq "DC"}.Nodename
             DependsOn = '[WindowsFeature]ADDS_Install'
         }
     }
+	Node $AllNodes.Where{$_.Role -eq "SQL"}.Nodename
+    {
+        LocalConfigurationManager
+        {
+            ConfigurationMode = 'ApplyAndAutoCorrect'
+            RebootNodeIfNeeded = $true
+            ActionAfterReboot = 'ContinueConfiguration'
+            AllowModuleOverwrite = $true
+        }
+		xWaitforDisk Disk2
+		{
+		DiskNumber = 2
+		RetryIntervalSec = 60
+		RetryCount = 60
+		}
+		xDisk FVolume
+		{
+		DiskNumber = 2
+		DriveLetter = 'F'
+		}
+				xWaitforDisk Disk3
+		{
+		DiskNumber = 3
+		RetryIntervalSec = 60
+		RetryCount = 60
+		}
+		xDisk FVolume
+		{
+		DiskNumber = 3
+		DriveLetter = 'G'
+		}
+    }
 }

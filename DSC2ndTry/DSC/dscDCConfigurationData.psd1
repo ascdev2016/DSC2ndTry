@@ -9,8 +9,16 @@
             PSDscAllowDomainUser = $true
         },
         @{ 
-            Nodename = "localhost"
+            Nodename = "solutions-dc"
             Role = "DC"
+        }
+		        @{ 
+            Nodename = "solutions-SQL"
+            Role = "SQL"
+        }
+		        @{ 
+            Nodename = "solutions-SP"
+            Role = "SP"
         }
     )
 }
