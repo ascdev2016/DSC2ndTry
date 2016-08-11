@@ -4,7 +4,7 @@
   "parameters": {
     "StorageAccountName": {
       "type": "string",
-      "defaultValue": "ascdevlabsol1"
+      "defaultValue": "ascdevlabsolu"
     },
     "storageAccountType": {
       "type": "string",

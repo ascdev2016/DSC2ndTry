@@ -109,7 +109,7 @@ Node $AllNodes.Where{$_.Role -eq "DC"}.Nodename
 		DiskNumber = 2
 		DriveLetter = 'F'
 		}
-				xWaitforDisk Disk3
+		xWaitforDisk Disk3
 		{
 		DiskNumber = 3
 		RetryIntervalSec = 60
@@ -121,7 +121,7 @@ Node $AllNodes.Where{$_.Role -eq "DC"}.Nodename
 		DriveLetter = 'G'
 		}
     }
-		Node $AllNodes.Where{$_.Role -eq "SQL"}.Nodename
+		Node $AllNodes.Where{$_.Role -eq "SP"}.Nodename
     {
         LocalConfigurationManager
         {
@@ -160,7 +160,7 @@ Node $AllNodes.Where{$_.Role -eq "DC"}.Nodename
 		}
 		xDisk HVolume
 		{
-		DiskNumber = 3
+		DiskNumber = 4
 		DriveLetter = 'H'
 		}
     }
