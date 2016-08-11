@@ -30,7 +30,6 @@ Node $AllNodes.Where{$_.Role -eq "DC"}.Nodename
 		{
 		DiskNumber = 2
 		DriveLetter = 'F'
-		FSLabel = 'Data'
 		}
         WindowsFeature DNS_RSAT
         { 
