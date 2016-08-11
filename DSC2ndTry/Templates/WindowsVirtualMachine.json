@@ -638,28 +638,8 @@
           }
         }
       ]
-    },
-    {
-      "name": "nestedDeployment",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "dependsOn": [ ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri":"https://raw.githubusercontent.com/ascdev2016/DSC2ndTry/master/DSC2ndTry/nested/helloWorld.json",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": { }
-      }
     }
-  ],
-  "outputs": {
-    "result": {
-      "type": "object",
-      "value": "[reference('nestedDeployment').outputs.result]"
-    }
-  }
+  ]
 }
 
 
