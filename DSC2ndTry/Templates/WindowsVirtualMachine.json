@@ -647,7 +647,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/', 'nested', '/', 'helloWorld.json', parameters('_artifactsLocationSasToken'))]",
+          "uri":"https://raw.githubusercontent.com/ascdev2016/DSC2ndTry/master/DSC2ndTry/nested/helloWorld.json",
           "contentVersion": "1.0.0.0"
         },
         "parameters": { }
