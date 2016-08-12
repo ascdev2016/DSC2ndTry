@@ -124,7 +124,8 @@
     "vhdStorageName": "[parameters('StorageAccountName')]",
     "dscDCConfigurationFunction": "dscDCConfiguration.ps1\\Main",
     "apiVersion": "2015-06-15",
-    "PrepareDisksConfigurationFunction": "PrepareDisksConfiguration.ps1\\DataDisk"
+    "PrepareDisksConfigurationFunction": "PrepareDisksConfiguration.ps1\\DataDisk",
+      "PrepareDisks2ConfigurationFunction": "PrepareDisks2Configuration.ps1\\Main"
   },
   "resources": [
     {
@@ -521,7 +522,35 @@
               "Password": "[parameters('adminPassword')]"
             }
           }
-        }
+        },
+          {
+              "name": "PrepareDisks",
+              "type": "extensions",
+              "location": "[resourceGroup().location]",
+              "apiVersion": "2015-06-15",
+              "dependsOn": [
+                  "[concat('Microsoft.Compute/virtualMachines/', variables('SQL-Name'))]"
+              ],
+              "tags": {
+                  "displayName": "PrepareDisks"
+              },
+            "properties": {
+              "publisher": "Microsoft.Powershell",
+              "type": "DSC",
+              "typeHandlerVersion": "2.9",
+              "autoUpgradeMinorVersion": true,
+              "settings": {
+                "modulesUrl": "[concat(parameters('_artifactsLocation'), '/', 'PrepareDisks.ps1.zip')]",
+                "sasToken": "[parameters('_artifactsLocationSasToken')]",
+                "configurationFunction": "[variables('PrepareDisksConfigurationFunction')]",
+                "properties": {
+                  "nodeName": "[variables('SQL-Name')]"
+                }
+              },
+              "protectedSettings": { },
+              "DataBlobUri": "[concat(parameters('_artifactsLocation'), '/PrepareDisksData.psd1')]"
+            }
+          }
       ]
     },
     {
