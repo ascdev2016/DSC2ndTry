@@ -16,6 +16,9 @@
     },
     "customerName": {
       "value": "solutions"
+    },
+    "nodeName": {
+      "value":"solutions-sql"
     }
   }
 }

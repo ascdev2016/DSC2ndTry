@@ -39,7 +39,6 @@
     <None Include="DSC\dscDCConfigurationData.psd1" />
     <Content Include="DSC\PrepareDisks.ps1" />
     <None Include="DSC\PrepareDisksData.psd1" />
-    <None Include="nested\helloWorld.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tools\AzCopy.exe" />

@@ -1,7 +1,7 @@
 Configuration DataDisk
     {
     Import-DSCResource -ModuleName xStorage
-    Node localhost
+    Node "localhost"
     {
         xWaitforDisk Disk2
             {
@@ -12,7 +12,7 @@ Configuration DataDisk
         xDisk FVolume
             {
             DiskNumber = 2
-            DriveLetter = ‘F’
+            DriveLetter = 'F'
             FSLabel = ‘Data’
             }
     }
