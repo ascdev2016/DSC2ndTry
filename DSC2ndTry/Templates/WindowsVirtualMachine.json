@@ -81,7 +81,49 @@
       "metadata": {
         "description": "Auto-generated token to access _artifactsLocation"
       }
-    }
+    },
+      "testTemplateFolder": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "template location. This path is relative to the _artifactsLocation parameter"
+          }
+      },
+      "testTemplateFileName": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "Name of the nested template file"
+          }
+      },
+      "fjgdfgjkhfgjkhdjkghdghjdhjdgTemplateFolder": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "template location. This path is relative to the _artifactsLocation parameter"
+          }
+      },
+      "fjgdfgjkhfgjkhdjkghdghjdhjdgTemplateFileName": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "Name of the nested template file"
+          }
+      },
+      "test2TemplateFolder": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "template location. This path is relative to the _artifactsLocation parameter"
+          }
+      },
+      "test2TemplateFileName": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "Name of the nested template file"
+          }
+      }
   },
   "variables": {
     "imagePublisher": "MicrosoftWindowsServer",
@@ -671,7 +713,21 @@
           }
         }
       ]
-    }
+    },
+      {
+          "name": "test",
+          "type": "Microsoft.Resources/deployments",
+          "apiVersion": "2015-01-01",
+          "dependsOn": [ ],
+          "properties": {
+              "mode": "Incremental",
+              "templateLink": {
+                  "uri": "[concat(parameters('_artifactsLocation'), '/', parameters('test2TemplateFolder'), '/', parameters('test2TemplateFileName'), parameters('_artifactsLocationSasToken'))]",
+                  "contentVersion": "1.0.0.0"
+              },
+              "parameters": { }
+          }
+      }
   ]
 }
 
